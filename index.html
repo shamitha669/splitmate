@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Split bills fairly with SplitMate, a simple bill splitting calculator.">
+  <title>SplitMate — Bill Splitter</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#172b25;--muted:#6f7f77;--green:#b9f36b;--green-dark:#204b36;--paper:#f7f8f3;--line:#e4e9e0;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}.nav{height:82px;max-width:1160px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}.brand{display:inline-flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.7px}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--green);font-size:18px;color:var(--green-dark)}.nav-links{display:flex;align-items:center;gap:32px;font-size:13px;font-weight:600}.nav-links>a:not(.nav-cta){color:#5d6c64}.nav-cta{padding:12px 17px;border:1px solid #dce3d8;border-radius:12px}.hero{max-width:1160px;margin:30px auto 72px;padding:55px 28px 48px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:42px;min-height:490px}.eyebrow{font-size:10px;letter-spacing:2px;font-weight:800;color:#65806d;display:flex;align-items:center;gap:9px}.live-dot{width:7px;height:7px;border-radius:50%;background:#8bd84d;box-shadow:0 0 0 4px #e5f6d5}.hero h1,.section-heading h2,.about-section h2{font-family:Manrope,sans-serif;font-size:clamp(48px,6vw,76px);letter-spacing:-4px;line-height:1.04;margin:24px 0 20px;font-weight:800}.hero h1 span,.section-heading h2 span,.about-section h2 span{color:#719b4e}.hero-text{max-width:435px;font-size:16px;line-height:1.8;color:var(--muted)}.hero-actions{display:flex;align-items:center;gap:25px;margin-top:29px}.button{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 19px;border-radius:12px;font-family:inherit;font-weight:700;font-size:13px;transition:transform .2s,box-shadow .2s}.button:hover{transform:translateY(-2px);box-shadow:0 9px 20px #18352216}.primary{background:var(--green);color:#1b3826}.text-link{font-size:12px;font-weight:700}.trust-row{display:flex;align-items:center;gap:12px;margin-top:38px}.trust-row p{font-size:12px;color:var(--muted)}.avatars{display:flex;padding-left:4px}.avatars span{display:grid;place-items:center;margin-left:-4px;width:28px;height:28px;border:2px solid var(--paper);border-radius:50%;background:#e5d7bd;font-size:10px;font-weight:800}.avatars span:nth-child(2){background:#d4e7c2}.avatars span:nth-child(3){background:#e7c9b7}.avatars span:nth-child(4){background:var(--green);font-size:15px}.hero-art{height:390px;position:relative;display:grid;place-items:center}.orbit{position:absolute;border:1px solid #e1e8dc;border-radius:50%;width:355px;height:355px}.orbit-two{width:280px;height:280px;border-style:dashed}.receipt{position:relative;z-index:2;width:260px;background:#fff;border-radius:17px;padding:23px 22px 28px;box-shadow:0 25px 65px #233b2818;transform:rotate(-5deg)}.receipt-top{display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1.2px;color:#8a978f;font-weight:800}.tiny-logo{display:grid;place-items:center;width:24px;height:24px;background:var(--green);border-radius:8px;color:#254832;font-size:13px}.receipt-title{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:800;margin:24px 0 20px}.receipt-title span{display:grid;place-items:center;border-radius:50%;background:#edf8e5;color:#5c963e;width:22px;height:22px;font-size:12px}.receipt-line,.receipt-total{display:flex;justify-content:space-between;margin:14px 0;font-size:10px;color:#7c8981}.receipt-line b{color:#33473b}.receipt-divider{border-top:1px dashed #d7ded4;margin:19px 0}.receipt-total{align-items:center;color:#314437}.receipt-total b{font-size:18px;color:#1c3828}.receipt-stamp{margin-top:20px;background:#f2f8ec;border:1px solid #e3f0d8;border-radius:8px;text-align:center;padding:9px;font-size:8px;font-weight:800;letter-spacing:2px;color:#68974b}.floating-card{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eef0e9;border-radius:13px;padding:13px 15px;box-shadow:0 15px 35px #233b2812}.card-people{left:-4px;top:64px}.people-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#eff8e8;color:#659848;font-size:20px}.floating-card strong{display:block;font-size:11px}.floating-card small{display:block;color:#87928b;font-size:9px;margin-bottom:4px}.card-each{right:-2px;bottom:43px;display:block;min-width:165px}.card-each strong{font-family:Manrope,sans-serif;font-size:22px;letter-spacing:-1px;margin:4px 0}.card-each span{font-size:9px;color:#5b9840;font-weight:700}.coin{position:absolute;display:grid;place-items:center;border-radius:50%;font-weight:800}.coin-one{right:38px;top:35px;width:43px;height:43px;background:var(--green);color:#31552b;box-shadow:0 9px 20px #b9f36b55}.coin-two{left:27px;bottom:56px;width:32px;height:32px;background:#e8d9c7;color:#856b4b}.stats{max-width:1104px;margin:0 auto 105px;padding:27px 34px;border:1px solid var(--line);border-radius:18px;display:grid;grid-template-columns:repeat(3,1fr);background:#fbfcf8}.stats div{display:flex;align-items:center;gap:16px;padding:3px 20px;border-right:1px solid var(--line)}.stats div:last-child{border:0}.stats strong{font-family:Manrope,sans-serif;font-size:23px;color:#81a85e}.stats span{font-size:12px;font-weight:700}.split-section{background:#edf3e8;padding:95px 24px 105px}.section-heading{text-align:center;max-width:600px;margin:0 auto 43px}.section-heading h2{font-size:46px;letter-spacing:-2.3px;margin:14px 0}.section-heading p{color:var(--muted);font-size:14px;line-height:1.7}.section-heading .eyebrow{justify-content:center}.calculator{max-width:850px;margin:auto;background:white;border:1px solid #e1e9dc;border-radius:23px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px;box-shadow:0 25px 60px #243d2810}.calc-form{padding:25px 23px}.calc-form>label,.tip-row label{display:block;font-size:12px;font-weight:700;margin:0 0 11px}.calc-form>label span{float:right;color:#8b988e;font-size:10px;font-weight:500}.input-wrap{display:flex;align-items:center;gap:10px;border:1px solid #dfe6dc;border-radius:12px;padding:0 14px;height:52px;margin-bottom:24px}.input-wrap>span{font-size:17px;color:#79916f;font-weight:700}.input-wrap input{border:0;outline:0;background:transparent;width:100%;font:600 16px 'DM Sans',sans-serif;color:var(--ink)}input::-webkit-inner-spin-button{appearance:none}.people-control{height:51px;display:flex;align-items:center;justify-content:space-between;border:1px solid #dfe6dc;border-radius:12px;padding:5px;margin-bottom:24px}.people-control button{width:38px;height:38px;border:0;border-radius:9px;background:#f0f5ec;font-size:21px;color:#36553d;cursor:pointer}.people-control output{font-size:17px;font-weight:800}.tip-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}.tip-row label{margin:0}.tip-row select{border:1px solid #dfe6dc;border-radius:9px;padding:8px 12px;background:white;font:600 12px 'DM Sans',sans-serif;color:var(--ink)}.calculate-btn{width:100%}.form-note{min-height:15px;font-size:10px;color:#87938a;margin:12px 0 0}.calc-result{border-radius:17px;background:#203d2c;color:#fff;padding:29px 27px;display:flex;flex-direction:column;justify-content:center}.result-label{display:flex;align-items:center;gap:9px;font-size:9px;letter-spacing:1.6px;color:#c3d6be;font-weight:800}.result-icon{display:grid;place-items:center;background:#355741;border-radius:8px;width:27px;height:27px;color:var(--green);font-size:17px}.result-amount{font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(35px,4vw,49px);letter-spacing:-2px;margin:16px 0 4px}.result-caption{font-size:11px;color:#c0d0c2;margin:0 0 26px}.result-details{border-top:1px solid #49614f;padding-top:13px}.result-details div{display:flex;justify-content:space-between;margin:13px 0;font-size:11px;color:#c2d0c3}.result-details b{color:#fff}.result-details .grand-total{border-top:1px solid #49614f;padding-top:15px;color:#fff;font-weight:700}.grand-total b{color:var(--green);font-size:14px}.light{margin-top:14px;background:#f5f8f0;color:#213d2c;width:100%;justify-content:center}.copy-status{font-size:10px;color:var(--green);text-align:center;min-height:12px;margin:9px 0 0}.how-section{max-width:1104px;margin:auto;padding:100px 24px 110px}.how-section .section-heading{margin-bottom:48px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.steps article{padding:27px;border:1px solid var(--line);background:#fbfcf8;border-radius:18px}.step-icon{display:grid;place-items:center;width:45px;height:45px;border-radius:14px;background:#e9f5df;color:#5f8d43;font-size:21px;font-weight:800;margin-bottom:28px}.step-number{font-size:9px;letter-spacing:1.6px;color:#78936d;font-weight:800}.steps h3{font-family:Manrope,sans-serif;font-size:18px;letter-spacing:-.5px;margin:10px 0}.steps p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}.about-section{background:#eaf1e4;padding:75px max(28px,calc((100% - 1050px)/2));display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}.about-section h2{font-size:43px;letter-spacing:-2px;margin:17px 0 0}.about-copy p{font-size:14px;line-height:1.9;color:#637368}.tech-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.tech-tags span{font-size:10px;font-weight:700;padding:8px 11px;border:1px solid #d3e0cb;border-radius:8px;color:#486844;background:#f4f8f0}footer{max-width:1104px;margin:auto;padding:28px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}footer .brand{font-size:16px}footer .brand-mark{width:28px;height:28px;font-size:15px}footer p,footer>a:last-child{font-size:11px;color:#77847b}footer>a:last-child{font-weight:700;color:#35553c}
+@media(max-width:760px){.nav{height:70px;padding:0 20px}.nav-links{gap:13px}.nav-links>a:not(.nav-cta){display:none}.nav-cta{padding:10px 12px;font-size:11px}.hero{grid-template-columns:1fr;padding:40px 23px 20px;margin:0 auto 50px;gap:5px}.hero h1{font-size:60px}.hero-art{height:350px;margin-top:10px}.orbit{width:310px;height:310px}.orbit-two{width:240px;height:240px}.receipt{width:235px}.card-people{left:0;top:45px}.card-each{right:0;bottom:25px}.stats{margin:0 20px 70px;padding:20px;grid-template-columns:1fr;gap:14px}.stats div{border-right:0;border-bottom:1px solid var(--line);padding:0 0 13px}.stats div:last-child{padding-bottom:0}.split-section{padding:70px 16px}.section-heading h2{font-size:38px}.calculator{grid-template-columns:1fr;padding:10px;gap:10px}.calc-form{padding:22px 15px}.calc-result{padding:25px 22px}.steps{grid-template-columns:1fr}.how-section{padding:70px 20px}.steps article{padding:23px}.step-icon{margin-bottom:20px}.about-section{grid-template-columns:1fr;gap:25px;padding:60px 24px}.about-section h2{font-size:39px}footer{padding:24px 20px;flex-wrap:wrap}footer p{order:3;width:100%;margin:0}}@media(min-width:761px) and (max-width:980px){.hero{gap:15px}.hero-art{transform:scale(.9)}.hero h1{font-size:62px}.stats{margin-left:25px;margin-right:25px}}
+
+.student-card{display:flex;align-items:center;gap:14px;margin-top:25px;padding:17px;border:1px solid #d6e2ce;border-radius:15px;background:#f5f8f0;max-width:360px}
+.student-avatar{display:grid;place-items:center;flex-shrink:0;width:49px;height:49px;border-radius:15px;background:var(--green);color:#24432c;font-family:Manrope,sans-serif;font-size:17px;font-weight:800}
+.student-card strong,.student-card span{display:block}.student-card strong{font-family:Manrope,sans-serif;font-size:15px;margin-bottom:5px}.student-card span{font-size:11px;color:#6b7c6e;line-height:1.7}
+
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#home"><span class="brand-mark">S</span> SplitMate</a>
+    <div class="nav-links"><a href="#how">How it works</a><a href="#about">About</a><a href="#splitter" class="nav-cta">Try the app ↗</a></div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> SIMPLE. FAIR. INSTANT.</div>
+        <h1>Good times.<br><span>Fair splits.</span></h1>
+        <p class="hero-text">Dinner with friends, a weekend trip, or shared rent. Split the bill in seconds and keep the good vibes going.</p>
+        <div class="hero-actions"><a class="button primary" href="#splitter">Split a bill <span>↘</span></a><a class="text-link" href="#how">See how it works →</a></div>
+        <div class="trust-row"><div class="avatars"><span>A</span><span>R</span><span>M</span><span>+</span></div><p>Less math, more memories.</p></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a bill and coins">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="receipt">
+          <div class="receipt-top"><span class="tiny-logo">S</span><span>GROUP RECEIPT</span><span>•••</span></div>
+          <div class="receipt-title">Dinner night <span>✓</span></div>
+          <div class="receipt-line"><span>Food & drinks</span><b>₹2,400</b></div>
+          <div class="receipt-line"><span>Service charge</span><b>₹120</b></div>
+          <div class="receipt-divider"></div>
+          <div class="receipt-total"><span>Total bill</span><b>₹2,520</b></div>
+          <div class="receipt-stamp">SPLIT FAIRLY</div>
+        </div>
+        <div class="floating-card card-people"><span class="people-icon">♧</span><div><strong>4 people</strong><small>One happy group</small></div></div>
+        <div class="floating-card card-each"><small>Each person pays</small><strong>₹630.00</strong><span>✓ Even split</span></div>
+        <div class="coin coin-one">₹</div><div class="coin coin-two">+</div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div><strong>01</strong><span>Enter the bill</span></div><div><strong>02</strong><span>Add your people</span></div><div><strong>03</strong><span>Split it fairly</span></div>
+    </section>
+
+    <section class="split-section" id="splitter">
+      <div class="section-heading"><div class="eyebrow">YOUR TURN</div><h2>Let's split <span>the bill.</span></h2><p>Enter the amount and number of people. We'll do the math for you.</p></div>
+      <div class="calculator">
+        <div class="calc-form">
+          <label for="bill">Total bill amount <span>₹ INR</span></label>
+          <div class="input-wrap"><span>₹</span><input id="bill" type="number" min="0" step="0.01" value="2520" placeholder="e.g. 2500"></div>
+          <label for="people">Number of people</label>
+          <div class="people-control"><button type="button" id="minus" aria-label="Remove one person">−</button><output id="peopleCount">4</output><button type="button" id="plus" aria-label="Add one person">+</button></div>
+          <div class="tip-row"><label for="tip">Add a tip</label><select id="tip"><option value="0">No tip</option><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="18">18%</option></select></div>
+          <button class="button primary calculate-btn" id="calculate">Calculate split <span>→</span></button>
+          <p class="form-note" id="message" role="status">Change the values to update your split.</p>
+        </div>
+        <div class="calc-result">
+          <div class="result-label"><span class="result-icon">↗</span> EACH PERSON PAYS</div>
+          <div class="result-amount" id="each">₹630.00</div>
+          <p class="result-caption">Everyone contributes an equal share.</p>
+          <div class="result-details"><div><span>Original bill</span><b id="original">₹2,520.00</b></div><div><span>Tip amount</span><b id="tipAmount">₹0.00</b></div><div class="grand-total"><span>Total with tip</span><b id="grand">₹2,520.00</b></div></div>
+          <button class="button light" id="copy">Copy split summary ⧉</button>
+          <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-section" id="how">
+      <div class="section-heading"><div class="eyebrow">NO AWKWARD MATH</div><h2>Three steps. <span>All settled.</span></h2></div>
+      <div class="steps"><article><div class="step-icon">₹</div><span class="step-number">STEP 01</span><h3>Enter your total</h3><p>Add the bill amount and choose a tip if you want to include one.</p></article><article><div class="step-icon">♧</div><span class="step-number">STEP 02</span><h3>Count your crew</h3><p>Set how many people are sharing the bill.</p></article><article><div class="step-icon">✓</div><span class="step-number">STEP 03</span><h3>Pay your share</h3><p>Get the per-person amount instantly. Nice and simple.</p></article></div>
+    </section>
+
+    <section class="about-section" id="about"><div><div class="eyebrow">ABOUT THIS PROJECT</div><h2>Built to make<br>sharing <span>easier.</span></h2></div><div class="about-copy"><p>SplitMate is a responsive bill-splitting web app built with HTML, CSS, and JavaScript. It calculates an equal share of a bill, includes optional tip calculations, and lets users copy a summary.</p><div class="tech-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive UI</span></div></div></section>
+  </main>
+  <footer><a class="brand" href="#home"><span class="brand-mark">S</span> SplitMate</a><p>Shamitha J · B.Sc. Information Technology · 25BIT053</p><a href="#home">Back to top ↑</a></footer>
+  <script>
+const billInput = document.getElementById('bill');
+const peopleOutput = document.getElementById('peopleCount');
+const tipSelect = document.getElementById('tip');
+const eachOutput = document.getElementById('each');
+const originalOutput = document.getElementById('original');
+const tipOutput = document.getElementById('tipAmount');
+const grandOutput = document.getElementById('grand');
+const message = document.getElementById('message');
+let people = 4;
+
+const money = value => new Intl.NumberFormat('en-IN', {
+  style: 'currency', currency: 'INR', minimumFractionDigits: 2, maximumFractionDigits: 2
+}).format(value);
+
+function calculate() {
+  const bill = Number(billInput.value);
+  const tipRate = Number(tipSelect.value);
+  if (!Number.isFinite(bill) || bill < 0 || billInput.value.trim() === '') {
+    message.textContent = 'Please enter a valid bill amount (zero or more).';
+    eachOutput.textContent = '—';
+    originalOutput.textContent = '—';
+    tipOutput.textContent = '—';
+    grandOutput.textContent = '—';
+    return;
+  }
+  const tipAmount = bill * tipRate / 100;
+  const total = bill + tipAmount;
+  eachOutput.textContent = money(total / people);
+  originalOutput.textContent = money(bill);
+  tipOutput.textContent = money(tipAmount);
+  grandOutput.textContent = money(total);
+  message.textContent = `Split between ${people} ${people === 1 ? 'person' : 'people'}${tipRate ? ` with a ${tipRate}% tip` : ''}.`;
+  document.getElementById('copyStatus').textContent = '';
+}
+document.getElementById('minus').addEventListener('click', () => {
+  if (people > 1) people--;
+  peopleOutput.textContent = people;
+  calculate();
+});
+document.getElementById('plus').addEventListener('click', () => {
+  if (people < 100) people++;
+  peopleOutput.textContent = people;
+  calculate();
+});
+document.getElementById('calculate').addEventListener('click', calculate);
+billInput.addEventListener('input', calculate);
+tipSelect.addEventListener('change', calculate);
+document.getElementById('copy').addEventListener('click', async () => {
+  const bill = Number(billInput.value);
+  if (!Number.isFinite(bill) || bill < 0 || billInput.value.trim() === '') {
+    message.textContent = 'Enter a valid bill amount before copying.';
+    return;
+  }
+  const tipAmount = bill * Number(tipSelect.value) / 100;
+  const total = bill + tipAmount;
+  const summary = `SplitMate bill summary\nOriginal bill: ${money(bill)}\nTip: ${money(tipAmount)}\nTotal: ${money(total)}\nPeople: ${people}\nEach person pays: ${money(total / people)}`;
+  try {
+    await navigator.clipboard.writeText(summary);
+    document.getElementById('copyStatus').textContent = 'Summary copied!';
+  } catch {
+    document.getElementById('copyStatus').textContent = 'Copy is not available in this browser. You can note the amount above.';
+  }
+});
+calculate();
+
+  </script>
+</body>
+</html>
